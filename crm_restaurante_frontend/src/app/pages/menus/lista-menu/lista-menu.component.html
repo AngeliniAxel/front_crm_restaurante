@@ -1,0 +1,20 @@
+<button>MOSTRAR TODOS</button>
+
+<p-table [value]="arrMenus" [tabStyle]="{ 'min-width' : '50rem' }"><ng-template #header>
+        <tr>
+            <th>Nombre</th>
+            <th>Primeros</th>
+            <th>Segundos</th>
+            <th>Postres</th>
+            <th>Precio</th>
+
+        </tr>
+    </ng-template><ng-template #body let-restaurante>
+        <tr>
+            <td>{{ menu.name }}</td>
+            <td>{{ menu.firsts}}</td>
+            <td>{{ menu.seconds }}</td>
+            <td>{{ menu.desserts }}</td>
+            <td>{{ menu.price }}</td>
+
+    </ng-template></p-table>
