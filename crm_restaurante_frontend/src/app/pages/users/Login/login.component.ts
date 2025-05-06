@@ -21,7 +21,7 @@ export class LoginComponent {
   async onSubmit() {
     try {
       const response = await this.userService.login(this.loginForm.value);
-      localStorage.setItem('restaurante_token', response.token);
+      localStorage.setItem('restaurant_token', response.token);
     } catch (error) {
       alert(error);
     }
