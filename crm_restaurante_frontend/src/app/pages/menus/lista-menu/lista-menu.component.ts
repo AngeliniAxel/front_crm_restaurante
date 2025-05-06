@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { MenuService } from './../../../services/menu.service';
+import { Component, inject } from '@angular/core';
+import { MenuInterface } from '../../../interfaces/menu.interface';
+
+
 
 @Component({
   selector: 'app-lista-menu',
@@ -7,7 +11,14 @@ import { Component } from '@angular/core';
   styleUrl: './lista-menu.component.css'
 })
 export class ListaMenuComponent {
+  arrMenus: MenuInterface[] = [];
 
+  menuService = inject(MenuService);
+
+  async ngOnInit() {
+    this.arrMenus = await this.menuService.getAll()
+    console.log(this.arrMenus);
+  }
 }
 
-
+  
