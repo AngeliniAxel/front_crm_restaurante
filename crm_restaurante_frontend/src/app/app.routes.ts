@@ -5,6 +5,8 @@ import { RegisterComponent } from './pages/users/register/register.component';
 import { LoginComponent } from './pages/users/Login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EditMenuComponent } from './pages/menus/edit-menu/edit-menu.component';
+import { ReviewsDisplayComponent } from './reviews/reviews-display/reviews-display.component';
+import { ReviewsCreateComponent } from './reviews/reviews-create/reviews-create.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,4 +14,6 @@ export const routes: Routes = [
   { path: 'menu/edit', component: EditMenuComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'reviews', component: ReviewsDisplayComponent },
+  { path: 'reviews/create', component: ReviewsCreateComponent },
 ];
