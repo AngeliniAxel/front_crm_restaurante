@@ -1,0 +1,22 @@
+<p>reviews-create works!</p>
+
+<div class="container">
+    <h2 class="my-5">Crear Review</h2>
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputMessage" formControlName="message" autocomplete="off"
+                placeholder="Introduce tu reseña" />
+            <label for="inputMessage">Reseña</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="inputRating" formControlName="rating" autocomplete="off"
+                placeholder="Tu valoración" />
+            <label for="inputRating">Valoración</label>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>

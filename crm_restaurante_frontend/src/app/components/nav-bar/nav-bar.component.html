@@ -7,12 +7,36 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        @if(userService.isLogged()){
+        @if(userService.isAdmin()){
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/menu']">Menus</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/menu/edit']">Editar Menú</a>
+        </li>
+        <li class="nav-item">
+          <button (click)="onCLickLogout()" class="nav-link">Logout</button>
+        </li>
+
+        }@else if (userService.isLogged()){
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/menu']">Menus</a>
+        </li>
+
 
         <li class="nav-item">
           <button (click)="onCLickLogout()" class="nav-link">Logout</button>
         </li>
-        }@else {
+
+        }@else{
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']">Home</a>
         </li>
@@ -25,8 +49,8 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Login</a>
         </li>
-
         }
+
       </ul>
     </div>
   </div>
