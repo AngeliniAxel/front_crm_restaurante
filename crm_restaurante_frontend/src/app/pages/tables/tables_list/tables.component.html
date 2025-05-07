@@ -12,7 +12,7 @@
         <tbody>
             @for(table of arrTables; track $index){
             <tr>
-                <td scope="row">{{ table.id }}</td>
+                <td scope="row">{{ table.num_table}}</td>
                 <td>{{ table.capacity }}</td>
                 <td class="text-center">
                     <button class="btn btn-primary btn-sm" (click)="editTable(table.id)"><i class="fas fa-pen"></i>

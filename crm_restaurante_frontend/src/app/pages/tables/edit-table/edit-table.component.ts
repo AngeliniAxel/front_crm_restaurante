@@ -18,13 +18,14 @@ export class EditTableComponent {
   router = inject(Router);
 
   tableForm: FormGroup = new FormGroup({
-    id: new FormControl(),
+    num_table: new FormControl(),
     capacity: new FormControl(),
   });
 
   tableToEdit: Table = {
     id: 0,
-    capacity: 0
+    capacity: 0,
+    num_table: 0,
   };
 
   async ngOnInit() {
@@ -32,7 +33,7 @@ export class EditTableComponent {
     console.log(this.tableToEdit)
     
     this.tableForm.setValue({
-      id: this.tableToEdit.id,
+      num_table: this.tableToEdit.num_table,
       capacity: this.tableToEdit.capacity,
     });
   
@@ -40,10 +41,9 @@ export class EditTableComponent {
 
   async onSubmit() {
     try {
-      const response = await this.tableService.createTable(this.tableForm.value);
-      alert('Mesa creada')
+      const response = await this.tableService.editTable(this.tableForm.value);
+      alert('Mesa actualizada')
       this.router.navigateByUrl('/tables')
-
     } catch (error) {
       alert(error);
     }

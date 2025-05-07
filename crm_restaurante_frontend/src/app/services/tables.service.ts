@@ -29,15 +29,8 @@ private baseUrl: string = 'http://localhost:3000/api/tables';
     return lastValueFrom(this.httpClient.delete<Table>(`${this.baseUrl}/${id}`))
   }
 
-  editTable(id: number) {
-    
+  editTable(table: Table) {
+    return lastValueFrom(this.httpClient.put<Table>(`${this.baseUrl}/${table.id}`, table))
   }
-  
 
-
- /*  updateTable(id: number, capacity: number) {
-    const url = `${this.baseUrl}/${id}`;
-    return lastValueFrom(this.httpClient.put<Table>(url, menuData));
-  } */
-  
 }

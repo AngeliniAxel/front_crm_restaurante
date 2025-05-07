@@ -16,7 +16,7 @@ tableService = inject(TablesService);
   router = inject(Router);
 
   tableForm: FormGroup = new FormGroup({
-    id: new FormControl(),
+    num_table: new FormControl(),
     capacity: new FormControl(),
   });
 
