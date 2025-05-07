@@ -1,0 +1,18 @@
+<div class="container">
+    <h2 class="my-5">Crear nueva mesa</h2>
+    <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="inputId" formControlName="id" autocomplete="off"
+                placeholder="id" />
+            <label for="inputId">Número de mesa</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="inputCapacity" formControlName="capacity"
+                placeholder="capacity" />
+            <label for="inputCapacity">Capacidad</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+</div>
