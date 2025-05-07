@@ -16,7 +16,7 @@ export class ReviewService {
 
   post(body: Review) {
     return lastValueFrom(
-      this.httpClient.post<Review>(`${this.baseUrl}/review`, body)
+      this.httpClient.post<Review>(`${this.baseUrl}/`, body)
     );
   }
 }

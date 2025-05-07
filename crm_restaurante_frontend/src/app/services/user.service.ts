@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { lastValueFrom } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 type LoginBody = {
   email: string;
@@ -11,6 +12,11 @@ type LoginBody = {
 type LoginResponse = {
   message: string;
   token: string;
+};
+
+type decodedToken = {
+  id: number;
+  role: string;
 };
 
 @Injectable({
@@ -36,5 +42,21 @@ export class UserService {
     if (localStorage.getItem('restaurant_token')) return true;
 
     return false;
+  }
+
+  isAdmin() {
+    const token = localStorage.getItem('restaurant_token');
+
+    if (!token) {
+      return false;
+    }
+
+    const decoded = jwtDecode(token) as decodedToken;
+
+    if (decoded.role !== 'admin') {
+      return false;
+    }
+
+    return true;
   }
 }
