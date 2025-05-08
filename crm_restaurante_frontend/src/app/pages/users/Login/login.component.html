@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="">Login</h2>
+  <h2 class="p-1">Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-floating mb-3">
       <input
@@ -11,6 +11,11 @@
         placeholder="Email"
       />
       <label for="inputEmail">Email</label>
+      @if(checkError('email', 'required')) {
+      <small>Este campo es obligatorio</small>
+      } @if(checkError('email', 'pattern') ) {
+      <small>Correo electrónico no válido</small>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -22,8 +27,21 @@
         placeholder="Contraseña"
       />
       <label for="inputPassword">Contraseña</label>
+      @if(checkError('password', 'required')) {
+      <small>Este campo es obligatorio</small>
+      } @if(checkError('password', 'minlength') || checkError('password',
+      'maxlength')) {
+      <small>La contraseña debe tener entre 5 y 20 caracteres</small>
+      }@if(checkError('password', 'pattern') ) {
+      <small
+        >La contraseña debe al menos una minúscula, una mayúscula y un
+        número</small
+      >
+      }
     </div>
 
-    <button type="submit" class="btn px-4">Login</button>
+    <button type="submit" class="btn px-4" [disabled]="loginForm.invalid">
+      Login
+    </button>
   </form>
 </div>
