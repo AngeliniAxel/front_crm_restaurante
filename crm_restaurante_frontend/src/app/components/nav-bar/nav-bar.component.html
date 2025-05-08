@@ -1,12 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Restaurante</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']"
+      ><img class="logo" src="assets/images/logo_white.png" alt="logo"
+    /></a>
+    <button
+      class="navbar-toggler btn-icon"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa-solid fa-bars menu-icon"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         @if(userService.isAdmin()){
 
         <li class="nav-item">
@@ -18,9 +27,6 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/menu/edit']">Editar Menú</a>
         </li>
-        <li class="nav-item">
-          <button (click)="onCLickLogout()" class="nav-link">Logout</button>
-        </li>
 
         }@else if (userService.isLogged()){
 
@@ -31,11 +37,6 @@
           <a class="nav-link" [routerLink]="['/menu']">Menus</a>
         </li>
 
-
-        <li class="nav-item">
-          <button (click)="onCLickLogout()" class="nav-link">Logout</button>
-        </li>
-
         }@else{
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']">Home</a>
@@ -43,6 +44,15 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/menu']">Menus</a>
         </li>
+
+        }
+      </ul>
+      <ul class="navbar-nav">
+        @if(userService.isLogged()){
+        <li class="nav-item">
+          <button (click)="onCLickLogout()" class="nav-link">Logout</button>
+        </li>
+        }@else {
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/register']">Register</a>
         </li>
@@ -50,7 +60,6 @@
           <a class="nav-link" [routerLink]="['/login']">Login</a>
         </li>
         }
-
       </ul>
     </div>
   </div>
