@@ -1,15 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-
 :root {
   --primary-color: #a68358;
   --bg-color: #f2ebdf;
-  --text: #f2ebdf;
-  --hover-color: #403726;
+  --text: #403726;
+  --hover-color: #f2ebdf;
 }
 
 body {
   background-color: var(--bg-color);
-  color: var(--hover-color);
+  color: var(--text);
 }
 
 .btn-fantasia {

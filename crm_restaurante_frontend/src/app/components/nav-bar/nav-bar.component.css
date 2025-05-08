@@ -1,28 +1,64 @@
-.navbar {
+.solid {
   background-color: var(--primary-color);
+  font-size: 1.1rem;
+  .nav-link,
+  .btn-icon {
+    color: var(--text);
+    &:hover {
+      color: var(--hover-color);
+    }
+  }
 
+  .btn-icon {
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.transparent {
+  background-color: transparent;
+  font-size: 1.7rem;
+
+  .nav-link,
+  .btn-icon {
+    color: var(--bg-color);
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: background-color 0.8s, font-size 0.8s ease;
+  z-index: 10;
+}
+
+.navbar {
   .logo {
     width: 50px;
     padding: 0;
     margin: 0;
   }
 
-  .btn-icon {
+  .btn-icon,
+  .navbar-toggler,
+  button {
     border: none;
+    outline: none;
     &:hover {
-      background-color: var(--hover-color);
+      border: none;
+      background-color: #f4ebde88;
+      color: var(--text);
     }
   }
   .menu-icon {
-    color: var(--text);
     border: none;
-  }
-
-  .nav-link {
-    color: var(--text);
-
-    &:hover {
-      color: var(--hover-color);
-    }
+    outline: none;
   }
 }

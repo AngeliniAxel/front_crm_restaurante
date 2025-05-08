@@ -1,0 +1,33 @@
+#hero {
+  color: var(--hover-color);
+  height: 90vh;
+  max-width: 3840px;
+  margin: 0 auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/assets/images/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .hero-content {
+    padding-top: 150px;
+  }
+
+  .logo-full {
+    width: 500px;
+  }
+
+  .btn-reserva {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 0.4em 0.7em;
+    border-radius: 8px;
+
+    &:hover {
+      cursor: pointer;
+      /* color: var(--text); */
+      background-color: #403c37d3;
+    }
+  }
+}
