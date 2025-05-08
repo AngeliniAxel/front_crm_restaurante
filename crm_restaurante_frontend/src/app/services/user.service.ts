@@ -16,6 +16,7 @@ type LoginResponse = {
 
 type decodedToken = {
   id: number;
+  name: string;
   role: string;
 };
 
@@ -42,6 +43,21 @@ export class UserService {
     if (localStorage.getItem('restaurant_token')) return true;
 
     return false;
+  }
+
+  getUserName(): string {
+    if (!this.isLogged) {
+      return 'No hay usuario logueado';
+    }
+    const token = localStorage.getItem('restaurant_token');
+
+    if (!token) {
+      return 'No hay usuario logueado';
+    }
+
+    const decoded = jwtDecode(token) as decodedToken;
+
+    return decoded.name;
   }
 
   isAdmin() {

@@ -2,7 +2,7 @@
   --primary-color: #a68358;
   --bg-color: #f2ebdf;
   --text: #403726;
-  --hover-color: #f2ebdf;
+  --hover-color: #bfae99;
 }
 
 body {
@@ -10,12 +10,13 @@ body {
   color: var(--text);
 }
 
-.btn-fantasia {
-  background-color: var(--secondary-color);
+.btn {
+  background-color: var(--hover-color);
   color: var(--text);
+  font-size: 1.2rem;
 
   &:hover {
-    background-color: var(--hover-color);
+    background-color: var(--primary-color);
     color: var(--text);
   }
 }

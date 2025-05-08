@@ -23,7 +23,7 @@ export class NavBarComponent {
 
   onCLickLogout() {
     localStorage.removeItem('restaurant_token');
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
   }
 
   @HostListener('window:scroll', [])

@@ -22,7 +22,7 @@
       <i class="fa-solid fa-bars menu-icon"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-25">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/menu']">Menus</a>
         </li>
@@ -34,14 +34,20 @@
 
         }
       </ul>
-      <ul class="navbar-nav w-25">
+      <hr class="w-25 mx-0 line d-lg-none" />
+      <ul class="navbar-nav">
         @if(userService.isLogged()){
+        <li class="nav-item">
+          <p class="nav-link" id="nav-name">
+            Bienvenido {{ userService.getUserName() }}!
+          </p>
+        </li>
         <li class="nav-item">
           <button (click)="onCLickLogout()" class="nav-link">Logout</button>
         </li>
         }@else {
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/register']">Register</a>
+          <a class="nav-link" [routerLink]="['/register']">Registro</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Login</a>

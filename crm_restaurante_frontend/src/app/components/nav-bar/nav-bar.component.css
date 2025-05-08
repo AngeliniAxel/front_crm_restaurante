@@ -18,7 +18,7 @@
 
 .transparent {
   background-color: transparent;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 
   .nav-link,
   .btn-icon {
@@ -47,8 +47,7 @@
   }
 
   .btn-icon,
-  .navbar-toggler,
-  button {
+  .navbar-toggler {
     border: none;
     outline: none;
     &:hover {
@@ -61,4 +60,23 @@
     border: none;
     outline: none;
   }
+}
+
+.nav-link {
+  display: inline-flex;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+#nav-name {
+  margin-bottom: 0;
+  &:hover {
+    color: inherit;
+  }
+}
+.line {
+  color: var(--bg-color);
 }
