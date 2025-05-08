@@ -32,11 +32,6 @@
       } @if(checkError('password', 'minlength') || checkError('password',
       'maxlength')) {
       <small>La contraseña debe tener entre 5 y 20 caracteres</small>
-      }@if(checkError('password', 'pattern') ) {
-      <small
-        >La contraseña debe al menos una minúscula, una mayúscula y un
-        número</small
-      >
       }
     </div>
 

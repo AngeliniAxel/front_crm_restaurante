@@ -27,7 +27,6 @@ export class LoginComponent {
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
-      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/), // Al menos una minúscula, una mayúscula y un número
     ]),
   });
 
