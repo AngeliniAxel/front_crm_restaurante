@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
   selector: 'app-tables',
   imports: [],
   templateUrl: './tables.component.html',
-  styleUrl: './tables.component.css'
+  styleUrl: './tables.component.css',
 })
 export class TablesComponent {
-
   arrTables: Table[] = [];
-  
-  router = inject(Router)
+
+  router = inject(Router);
 
   tableService = inject(TablesService);
 
@@ -22,17 +21,15 @@ export class TablesComponent {
   }
 
   onClick() {
-    this.router.navigateByUrl('/tables/new')
+    this.router.navigateByUrl('/tables/new');
   }
 
   editTable(id: number) {
-    this.router.navigateByUrl(`/tables/${id}`)
+    this.router.navigateByUrl(`/tables/${id}`);
   }
-  
 
   async deleteTable(id: number) {
-    this.tableService.deleteTable(id)
-    this.arrTables = await this.tableService.getAll()
-
+    const response = await this.tableService.deleteTable(id);
+    this.arrTables = await this.tableService.getAll();
   }
 }
