@@ -18,6 +18,7 @@ export class EditTableComponent {
   router = inject(Router);
 
   tableForm: FormGroup = new FormGroup({
+    id: new FormControl(),
     num_table: new FormControl(),
     capacity: new FormControl(),
   });
@@ -33,6 +34,7 @@ export class EditTableComponent {
     console.log(this.tableToEdit)
     
     this.tableForm.setValue({
+      id: this.idTable,
       num_table: this.tableToEdit.num_table,
       capacity: this.tableToEdit.capacity,
     });
