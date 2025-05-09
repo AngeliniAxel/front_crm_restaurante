@@ -8,12 +8,14 @@
         <input type="hidden" formControlName="id" />
 
         <div class="form-floating mb-3">
+            <label for="day_of_week">Día de semana</label>
             <select (change)="onChange($event)" class="filter-days" formControlName="day_of_week">
-                <option value="">Día de la semana</option>
+
                 @for (menu of arrMenus; track menu.id) {
                 <option [value]="menu.id">{{menu.day_of_week}}</option>
                 }
             </select>
+
         </div>
 
         <div class="form-floating mb-3">
@@ -22,21 +24,24 @@
             <label for="inputName">Título</label>
         </div>
 
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputFirsts" formControlName="firsts" autocomplete="off"
-                placeholder="Primer Plato" />
+            <textarea class="form-control" id="inputFirsts" formControlName="firsts" placeholder="Primer Plato"
+                (input)="adjustTextareaHeight($event)"></textarea>
             <label for="inputFirsts">Primeros</label>
         </div>
 
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputSeconds" formControlName="seconds" autocomplete="off"
-                placeholder="Segundo Plato" />
+            <textarea class="form-control" id="inputSeconds" formControlName="seconds" placeholder="Segundo Plato"
+                (input)="adjustTextareaHeight($event)"></textarea>
             <label for="inputSeconds">Segundos</label>
         </div>
 
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputDesserts" formControlName="desserts" autocomplete="off"
-                placeholder="Postres" />
+            <textarea class="form-control" id="inputDesserts" formControlName="desserts" placeholder="Postres"
+                (input)="adjustTextareaHeight($event)"></textarea>
             <label for="inputDesserts">Postres</label>
         </div>
 

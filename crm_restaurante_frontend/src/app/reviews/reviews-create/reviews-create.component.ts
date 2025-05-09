@@ -3,10 +3,11 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ReviewService } from '../../services/review.service';
+import { ReviewsDisplayComponent } from '../../components/reviews-display/reviews-display.component';
 
 @Component({
   selector: 'app-reviews-create',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ReviewsDisplayComponent],
   templateUrl: './reviews-create.component.html',
   styleUrl: './reviews-create.component.css',
 })

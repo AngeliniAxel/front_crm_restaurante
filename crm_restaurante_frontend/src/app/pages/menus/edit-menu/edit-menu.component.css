@@ -1,0 +1,88 @@
+/* General */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-floating {
+  position: relative;
+
+  label {
+    height: 25px;
+    border-radius: 5px;
+  }
+  input {
+    padding-top: 5px;
+  }
+  textarea {
+    padding-top: 10px;
+  }
+}
+
+textarea,
+input,
+select {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 300px;
+  transition: height 0.2s ease;
+}
+
+label {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #f8f9fa;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Botón */
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -10px;
+}

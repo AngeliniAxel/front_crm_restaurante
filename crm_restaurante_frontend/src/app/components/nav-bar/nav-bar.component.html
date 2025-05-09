@@ -1,24 +1,12 @@
-<nav
-  class="navbar navbar-expand-lg"
-  [class]="{
+<nav class="navbar navbar-expand-lg" [class]="{
     background: true,
     transparent: isHomeRoute && !isScrolled,
     solid: !isHomeRoute || isScrolled
-  }"
->
+  }">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"
-      ><img class="logo" src="assets/images/logo_white.png" alt="logo"
-    /></a>
-    <button
-      class="navbar-toggler btn-icon"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <a class="navbar-brand" [routerLink]="['/']"><img class="logo" src="assets/images/logo_white.png" alt="logo" /></a>
+    <button class="navbar-toggler btn-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars menu-icon"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -26,6 +14,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/menu']">Menus</a>
         </li>
+
         @if(userService.isAdmin()){
 
         <li class="nav-item">
@@ -37,14 +26,20 @@
       <hr class="w-25 mx-0 line d-lg-none" />
       <ul class="navbar-nav">
         @if(userService.isLogged()){
+
         <li class="nav-item">
           <p class="nav-link" id="nav-name">
             Bienvenido {{ userService.getUserName() }}!
           </p>
         </li>
         <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/reviews']">Añadir reseña</a>
+        </li>
+
+        <li class="nav-item">
           <button (click)="onCLickLogout()" class="nav-link">Logout</button>
         </li>
+
         }@else {
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/register']">Registro</a>

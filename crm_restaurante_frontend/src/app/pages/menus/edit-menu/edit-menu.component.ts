@@ -15,6 +15,8 @@ export class EditMenuComponent {
   menuService = inject(MenuService);
   route = inject(ActivatedRoute);
 
+  selectedId: number = 0;
+
   menuForm: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
@@ -24,16 +26,6 @@ export class EditMenuComponent {
     price: new FormControl(),
     day_of_week: new FormControl(),
   });
-
-  /* ngOnInit() {
-    // Obtén el ID del menú desde la URL
-    const menuId = Number(this.route.snapshot.paramMap.get('id'));
-    if (menuId) {
-      this.loadMenuById(menuId);
-    } else {
-      console.error('No se proporcionó un ID de menú.');
-    }
-  } */
 
   ngOnInit() {
     this.loadMenus();
@@ -60,13 +52,11 @@ export class EditMenuComponent {
     try {
       const menu = await this.menuService.getMenuById(menuId); // Asegúrate de tener este método en el servicio
       this.menuForm.patchValue({
-        id: menu.id,
         name: menu.name,
         firsts: menu.firsts,
         seconds: menu.seconds,
         desserts: menu.desserts,
         price: menu.price,
-        day_of_week: menu.day_of_week,
       });
     } catch (error) {
       console.error('Error al cargar el menú:', error);
@@ -74,13 +64,17 @@ export class EditMenuComponent {
   }
 
   onChange(event: Event) {
-    const selectedId = (event.target as HTMLSelectElement).value;
+    const selectedId = Number((event.target as HTMLSelectElement).value);
     console.log('ID seleccionado:', selectedId);
-    this.menuForm.patchValue({ day_of_week: selectedId });
-    return (this.selectedId = Number(selectedId));
-  }
+    this.selectedId = Number(selectedId);
 
-  selectedId: number = 0;
+    if (selectedId) {
+      this.loadMenuById(selectedId);
+      // Llama al método para cargar los datos del menú
+    } else {
+      console.error('No se seleccionó un ID válido.');
+    }
+  }
 
   async onSubmit() {
     try {
@@ -91,13 +85,23 @@ export class EditMenuComponent {
 
       if (!menuId) {
         console.error('El ID del menú es nulo o indefinido.');
+        alert('Seleccione un día para actualizar');
         return;
       }
 
       const updatedMenu = await this.menuService.updateMenu(menuId, menuData); // Llama al servicio
+      alert('Menú actualizado con éxito');
       console.log('Menú actualizado con éxito:', updatedMenu);
     } catch (error) {
       console.error('Error al actualizar el menú:', error);
+      alert('Error al actualizar el menú');
     }
+  }
+
+  //resize textarea para introducir el menu
+  adjustTextareaHeight(event: Event) {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = 'auto'; // Restablece la altura para recalcular
+    textarea.style.height = `${textarea.scrollHeight}px`; // Ajusta la altura al contenido
   }
 }

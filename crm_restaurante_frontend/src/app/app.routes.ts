@@ -6,7 +6,6 @@ import { LoginComponent } from './pages/users/Login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EditMenuComponent } from './pages/menus/edit-menu/edit-menu.component';
 
-import { ReviewsDisplayComponent } from './reviews/reviews-display/reviews-display.component';
 import { ReviewsCreateComponent } from './reviews/reviews-create/reviews-create.component';
 import { adminGuard } from './guards/admin.guard';
 import { TablesComponent } from './pages/tables/tables_list/tables.component';
@@ -23,11 +22,18 @@ export const routes: Routes = [
   },
 
   { path: 'tables', component: TablesComponent, canActivate: [adminGuard] },
-  { path: 'tables/new', component: NewTableComponent, canActivate: [adminGuard] },
-  {path: 'tables/:idTable', component: EditTableComponent, canActivate: [adminGuard]},
+  {
+    path: 'tables/new',
+    component: NewTableComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'tables/:idTable',
+    component: EditTableComponent,
+    canActivate: [adminGuard],
+  },
 
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'reviews', component: ReviewsDisplayComponent },
-  { path: 'reviews/create', component: ReviewsCreateComponent },
+  { path: 'reviews', component: ReviewsCreateComponent },
 ];

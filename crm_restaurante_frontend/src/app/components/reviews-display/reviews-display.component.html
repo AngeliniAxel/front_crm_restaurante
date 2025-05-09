@@ -1,0 +1,10 @@
+<h2 class="text-center">Valoraciones</h2>
+<section class="reviews container">
+    @for(review of arrReviews; track $index){
+    <div class="text-center ">
+        <h3>{{review.rating}}</h3>
+        <p>{{ review.message}}</p>
+    </div>
+
+    }
+</section>
