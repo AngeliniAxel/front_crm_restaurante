@@ -20,6 +20,11 @@ private baseUrl: string = 'http://localhost:3000/api/tables';
     return lastValueFrom(this.httpClient.get<Table>(url));
   }
 
+  getByCapacity(capacity: number){
+  const url = `${this.baseUrl}/capacity/${capacity}`;
+  return lastValueFrom(this.httpClient.get<Table[]>(url));
+}
+
 
   createTable(body: Table) {
         return lastValueFrom(this.httpClient.post<Table>(this.baseUrl, body))
