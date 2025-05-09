@@ -1,0 +1,20 @@
+<div class="container">
+    <p>Haz tu reserva</p>
+    <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="inputNum_guests" formControlName="num_guests"
+                autocomplete="off" placeholder="num_guests" />
+            <label for="inputNum_guests">Cantidad de personas</label>
+        </div>
+        <div class="mb-3">
+            <label for="inputDate">Selecciona una fecha</label>
+            <p-datepicker formControlName="date" dateFormat="dd.mm.yy" />
+        </div>
+
+
+
+        <button type="submit" class="btn px-4">
+            Reservar
+        </button>
+    </form>
+</div>
