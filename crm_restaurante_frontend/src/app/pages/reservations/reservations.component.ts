@@ -33,7 +33,11 @@ export class ReservationsComponent {
   // Data
   reservationConfirmed = false;
   formattedDate: string = '';
+
+  // Fecha para inhabilitar el calendario en dias pasados
   tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+
+  // Obj que tendrá los array de las mesas disponibles
   availableTables: {
     at12: Table[];
     at14: Table[];
@@ -55,6 +59,8 @@ export class ReservationsComponent {
   active: number = 0;
 
   // Form
+
+  // Form de fecha y numero de invitados
   dateForm: FormGroup = new FormGroup({
     date: new FormControl(null, [Validators.required]),
     num_guests: new FormControl(null, [
@@ -64,6 +70,7 @@ export class ReservationsComponent {
     ]),
   });
 
+  // Form para la hora
   timeForm: FormGroup = new FormGroup({
     time: new FormControl(null, [Validators.required]),
   });
@@ -80,8 +87,7 @@ export class ReservationsComponent {
     this.formattedDate = this.formatDateToSql(this.dateForm.get('date')?.value);
     const capacity = this.dateForm.get('num_guests')?.value;
 
-    // Obtengo las mesas en cada horario basandome en la cantidad de personas y la fecha seleccionada
-
+    // Obtengo las mesas disponibles en cada horario basandome en la cantidad de personas y la fecha seleccionada
     // 12
     this.availableTables.at12 = await this.tablesService.getByAvailableTables(
       capacity,
@@ -127,11 +133,13 @@ export class ReservationsComponent {
     this.active++;
   }
 
-  // Confirm reservation (to be implemented)
+  // Confirm reservation
   async confirm() {
     const user_id = this.getUserId();
 
     const tablesForSelectedTime = this.getSelectedTablesByTime();
+
+    // De todas las mesas disponibles, selecciona la de tamaño mas adecuado
     const bestTable = tablesForSelectedTime.sort(
       (a, b) => a.capacity - b.capacity
     )[0];
@@ -155,6 +163,8 @@ export class ReservationsComponent {
   }
 
   // Utility
+
+  //Formatea la hora del formulario para que se adecue a mysql
   formatDateToSql(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -168,6 +178,7 @@ export class ReservationsComponent {
     return decoded.id;
   }
 
+  // Return array de las mesas disponiles para la hora seleccionada
   getSelectedTablesByTime(): Table[] {
     const selectedTime = this.timeForm.get('time')?.value;
     switch (selectedTime) {

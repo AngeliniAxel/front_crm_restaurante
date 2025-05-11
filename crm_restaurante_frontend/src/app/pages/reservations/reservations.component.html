@@ -1,30 +1,7 @@
-<!-- <div class="container">
-  <p>Haz tu reserva</p>
-  <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
-    <div class="form-floating mb-3">
-      <input
-        type="number"
-        class="form-control"
-        id="inputNum_guests"
-        formControlName="num_guests"
-        autocomplete="off"
-        placeholder="num_guests"
-      />
-      <label for="inputNum_guests">Cantidad de personas</label>
-    </div>
-    <div class="mb-3">
-      <label for="inputDate">Selecciona una fecha</label>
-      <p-datepicker formControlName="date" dateFormat="dd.mm.yy" />
-    </div>
-
-    <button type="submit" class="btn px-4">Reservar</button>
-  </form>
-</div>
- -->
-
 <div class="container">
   <p-steps [model]="items" [activeIndex]="active" [readonly]="true"></p-steps>
 
+  <!-- Primer paso -->
   @if(active === 0){
   <div class="mt-5">
     <h5 class="mb-4">Paso 1: Elige fecha y cantidad de personas</h5>
@@ -66,12 +43,16 @@
       </div>
     </form>
   </div>
-  } @if(active === 1){
+  }
+
+  <!-- Paso dos -->
+  @if(active === 1){
   <div class="mt-5">
     <h5 class="mb-4">Paso 2: Elige un horario disponible</h5>
 
     <form [formGroup]="timeForm">
       <div class="mb-3">
+        <!-- 12:00 -->
         @if(availableTables.at12.length){
         <div class="form-check">
           <input
@@ -83,7 +64,10 @@
           />
           <label class="form-check-label" for="at12">12:00</label>
         </div>
-        } @if(availableTables.at14.length){
+        }
+
+        <!-- 14:00 -->
+        @if(availableTables.at14.length){
         <div class="form-check">
           <input
             class="form-check-input"
@@ -94,7 +78,10 @@
           />
           <label class="form-check-label" for="at14">14:00</label>
         </div>
-        } @if(availableTables.at20.length){
+        }
+
+        <!-- 20:00 -->
+        @if(availableTables.at20.length){
         <div class="form-check">
           <input
             class="form-check-input"
@@ -105,7 +92,10 @@
           />
           <label class="form-check-label" for="at20">20:00</label>
         </div>
-        } @if(availableTables.at22.length){
+        }
+
+        <!-- 22:00 -->
+        @if(availableTables.at22.length){
         <div class="form-check">
           <input
             class="form-check-input"
@@ -131,7 +121,10 @@
       </button>
     </div>
   </div>
-  } @if(active === 2){
+  }
+
+  <!-- Paso 3 -->
+  @if(active === 2){
   <div class="mt-5">
     <h5 class="mb-4">Paso 3: Confirmar</h5>
 
@@ -162,8 +155,10 @@
     </div>
     }@else {
 
+    <!-- Mensaje de reserva confirmada -->
     <div class="alert alert-success mt-4 text-center">
-      ¡Reserva confirmada! Te esperamos.
+      <p>Reserva confirmada!</p>
+      <p>Recibirás un email con los datos de tu reserva!</p>
     </div>
     }
   </div>
