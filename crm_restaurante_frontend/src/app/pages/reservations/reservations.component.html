@@ -27,7 +27,8 @@
 
   @if(active === 0){
   <div class="mt-5">
-    <form [formGroup]="dateForm" (ngSubmit)="next()">
+    <h5 class="mb-4">Paso 1: Elige fecha y cantidad de personas</h5>
+    <form [formGroup]="dateForm" (ngSubmit)="confirmDate()">
       <div class="form-floating mb-3">
         <input
           type="number"
@@ -38,32 +39,121 @@
           placeholder="num_guests"
         />
         <label for="inputNum_guests">Cantidad de personas</label>
+        @if(checkError('num_guests', 'required')) {
+        <small>Este campo es obligatorio</small>
+        } @if(checkError('num_guests', 'min') || checkError('num_guests',
+        'max')) {
+        <small
+          >Reserva solo disponible para grupos de entre 1 a 12 personas</small
+        >
+        }
       </div>
       <div class="mb-3">
         <label for="inputDate">Selecciona una fecha</label>
         <p-datepicker
           formControlName="date"
           dateFormat="dd.mm.yy"
+          [minDate]="tomorrow"
         ></p-datepicker>
       </div>
+      @if(checkError('date', 'required')) {
+      <small>Este campo es obligatorio</small>
+      }
       <div class="d-flex justify-content-end">
-        <button type="submit" class="btn mt-3">Siguiente</button>
+        <button type="submit" class="btn mt-3" [disabled]="dateForm.invalid">
+          Siguiente
+        </button>
       </div>
     </form>
   </div>
   } @if(active === 1){
   <div class="mt-5">
-    <h5>Paso 2: Elige el horario disponible</h5>
-    <!-- Aquí va tu lógica de horarios disponibles -->
+    <h5 class="mb-4">Paso 2: Elige un horario disponible</h5>
+
+    <form [formGroup]="timeForm">
+      <div class="mb-3">
+        @if(availableTables.at12.length){
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="at12"
+            formControlName="time"
+            value="12:00"
+          />
+          <label class="form-check-label" for="at12">12:00</label>
+        </div>
+        } @if(availableTables.at14.length){
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="at14"
+            formControlName="time"
+            value="14:00"
+          />
+          <label class="form-check-label" for="at14">14:00</label>
+        </div>
+        } @if(availableTables.at20.length){
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="at20"
+            formControlName="time"
+            value="20:00"
+          />
+          <label class="form-check-label" for="at20">20:00</label>
+        </div>
+        } @if(availableTables.at22.length){
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="at22"
+            formControlName="time"
+            value="22:00"
+          />
+          <label class="form-check-label" for="at22">22:00</label>
+        </div>
+        }
+      </div>
+    </form>
+
     <div class="d-flex justify-content-between">
       <button class="btn mt-3" (click)="prev()">Anterior</button>
-      <button class="btn mt-3" (click)="next()">Siguiente</button>
+      <button
+        class="btn mt-3"
+        (click)="confirmTime()"
+        [disabled]="timeForm.invalid"
+      >
+        Siguiente
+      </button>
     </div>
   </div>
   } @if(active === 2){
   <div class="mt-5">
-    <h5>Paso 3: Confirma tu reserva</h5>
-    <!-- Aquí muestras los datos y confirmas la reserva -->
+    <h5 class="mb-4">Paso 3: Confirmar</h5>
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Resumen de tu reserva</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Fecha:</strong>
+            {{ dateForm.value.date | date : "dd/MM/yyyy" }}
+          </li>
+          <li class="list-group-item">
+            <strong>Horario:</strong> {{ timeForm.value.time }}
+          </li>
+          <li class="list-group-item">
+            <strong>Cantidad de personas:</strong>
+            {{ dateForm.value.num_guests }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-between">
       <button class="btn mt-3" (click)="prev()">Anterior</button>
       <button class="btn mt-3" (click)="confirm()">Confirmar reserva</button>
