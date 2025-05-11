@@ -1,3 +1,4 @@
+import { Response } from './../../../../node_modules/@types/express-serve-static-core/index.d';
 import { TablesService } from './../../services/tables.service';
 import { Component, inject } from '@angular/core';
 import {
@@ -10,7 +11,14 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { Table } from '../../interfaces/table.interface';
 import { StepsModule } from 'primeng/steps';
 import { DatePipe } from '@angular/common';
+import { ReservationsService } from '../../services/reservations.service';
+import { jwtDecode } from 'jwt-decode';
+import { Reservation } from '../../interfaces/reservation.interface';
 
+type decodedToken = {
+  id: number;
+  role: string;
+};
 @Component({
   selector: 'app-reservations',
   imports: [DatePickerModule, ReactiveFormsModule, StepsModule, DatePipe],
@@ -20,9 +28,10 @@ import { DatePipe } from '@angular/common';
 export class ReservationsComponent {
   // Services
   tablesService = inject(TablesService);
+  reservationsService = inject(ReservationsService);
 
   // Data
-  arrTables: Table[] = [];
+  reservationConfirmed = false;
   formattedDate: string = '';
   tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
   availableTables: {
@@ -119,13 +128,59 @@ export class ReservationsComponent {
   }
 
   // Confirm reservation (to be implemented)
-  confirm() {}
+  async confirm() {
+    const user_id = this.getUserId();
 
-  // Utility: format date to SQL string
+    const tablesForSelectedTime = this.getSelectedTablesByTime();
+    const bestTable = tablesForSelectedTime.sort(
+      (a, b) => a.capacity - b.capacity
+    )[0];
+
+    const reservation: Reservation = {
+      user_id: user_id,
+      table_id: bestTable.id,
+      reservation_date: this.formattedDate,
+      reservation_time: this.timeForm.get('time')?.value,
+      num_guests: this.dateForm.get('num_guests')?.value,
+      special_request: '',
+      status: 'confirmed',
+    };
+
+    try {
+      const response = await this.reservationsService.createTable(reservation);
+      this.reservationConfirmed = true;
+    } catch (error: any) {
+      alert(error.error.message);
+    }
+  }
+
+  // Utility
   formatDateToSql(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+
+  getUserId() {
+    const token = localStorage.getItem('restaurant_token')!;
+    const decoded = jwtDecode(token) as decodedToken;
+    return decoded.id;
+  }
+
+  getSelectedTablesByTime(): Table[] {
+    const selectedTime = this.timeForm.get('time')?.value;
+    switch (selectedTime) {
+      case '12:00':
+        return this.availableTables.at12;
+      case '14:00':
+        return this.availableTables.at14;
+      case '20:00':
+        return this.availableTables.at20;
+      case '22:00':
+        return this.availableTables.at22;
+      default:
+        return [];
+    }
   }
 }

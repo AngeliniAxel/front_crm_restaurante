@@ -12,6 +12,7 @@ import { TablesComponent } from './pages/tables/tables_list/tables.component';
 import { NewTableComponent } from './pages/tables/new-table/new-table.component';
 import { EditTableComponent } from './pages/tables/edit-table/edit-table.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,9 +35,12 @@ export const routes: Routes = [
     canActivate: [adminGuard],
   },
 
-  {path: 'reservations', component: ReservationsComponent},
+  {
+    path: 'reservations',
+    component: ReservationsComponent,
+    canActivate: [authGuard],
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'reviews', component: ReviewsCreateComponent },
-
 ];

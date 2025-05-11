@@ -154,10 +154,18 @@
       </div>
     </div>
 
+    @if(!reservationConfirmed){
+
     <div class="d-flex justify-content-between">
       <button class="btn mt-3" (click)="prev()">Anterior</button>
       <button class="btn mt-3" (click)="confirm()">Confirmar reserva</button>
     </div>
+    }@else {
+
+    <div class="alert alert-success mt-4 text-center">
+      ¡Reserva confirmada! Te esperamos.
+    </div>
+    }
   </div>
   }
 </div>
