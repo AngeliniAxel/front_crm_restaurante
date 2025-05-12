@@ -1,16 +1,26 @@
-<div class="p-5 d-flex align-items-center">
-  <figure class="shadow">
-    <img src="assets/images/menu-landing.png" alt="" />
-  </figure>
-  <div class="d-flex flex-column justify-content-center">
-    <p>
-      Sabores intensos, ingredientes frescos y combinaciones que sorprenden sin
-      perder la elegancia. Nuestra carta es un viaje gastronómico con carácter y
-      alma.
-    </p>
-    <a href="#" class="menu-link">
-      Conoce nuestra carta
-      <i class="fa-solid fa-arrow-right"></i>
-    </a>
+<div class="p-0 pt-2 pb-lg-5 d-flex align-items-center rounded">
+  <div
+    class="content d-flex flex-column flex-lg-row justify-content-center align-items-center w-100"
+  >
+    <figure class="mb-4 mb-lg-0 me-lg-5">
+      <img src="assets/images/menu-landing.png" alt="" />
+    </figure>
+    <div
+      class="d-flex flex-column justify-content-center align-items-start px-3 px-lg-0"
+    >
+      <p class="fs-5 mb-3">
+        Sabores intensos, ingredientes frescos y combinaciones que sorprenden
+        sin perder la elegancia. Nuestra carta es un viaje gastronómico con
+        carácter y alma.
+      </p>
+      <a
+        href="#"
+        class="btn rounded-pill px-4 py-2 fw-semibold"
+        [routerLink]="['/menu']"
+      >
+        Conoce nuestra carta
+        <i class="fa-solid fa-arrow-right ms-2"></i>
+      </a>
+    </div>
   </div>
 </div>

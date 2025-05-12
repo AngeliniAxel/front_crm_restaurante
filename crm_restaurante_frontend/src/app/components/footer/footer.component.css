@@ -1,0 +1,12 @@
+.footer {
+  background-color: var(--primary-color);
+  width: 100%;
+  margin-top: 100px;
+  color: var(--bg-color);
+
+  .logo {
+    width: 50px;
+    padding: 0;
+    margin: 0;
+  }
+}

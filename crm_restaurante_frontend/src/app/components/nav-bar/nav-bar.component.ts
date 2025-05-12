@@ -13,6 +13,7 @@ export class NavBarComponent {
   userService = inject(UserService);
   isScrolled: boolean = false; // Tracks if the page is scrolled
   isHomeRoute = false;
+  isCollapsed: boolean = false;
 
   ngOnInit(): void {
     // Detect if the current route is 'home'
@@ -24,6 +25,10 @@ export class NavBarComponent {
   onCLickLogout() {
     localStorage.removeItem('restaurant_token');
     this.router.navigateByUrl('/');
+  }
+
+  toggleMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   @HostListener('window:scroll', [])

@@ -14,19 +14,20 @@
   }
 
   .logo-full {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
+    min-width: 350px;
   }
 
   .btn-reserva {
     color: var(--bg-color);
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 0.4em 0.7em;
     border-radius: 8px;
 
     &:hover {
       cursor: pointer;
-      /* color: var(--text); */
       background-color: #403c37d3;
     }
   }

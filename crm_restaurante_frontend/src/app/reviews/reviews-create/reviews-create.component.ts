@@ -39,7 +39,7 @@ export class ReviewsCreateComponent {
     console.log(`datos enviados:`, this.reviewForm.value);
     try {
       const newReview = await this.reviewService.post(this.reviewForm.value);
-      alert('Registro correcto');
+      alert('Gracias por tu opinión!');
       console.log(newReview);
       this.router.navigateByUrl('/reviews/create');
       window.location.reload();

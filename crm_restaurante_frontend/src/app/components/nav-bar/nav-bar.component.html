@@ -2,8 +2,8 @@
   class="navbar navbar-expand-lg"
   [class]="{
     background: true,
-    transparent: isHomeRoute && !isScrolled,
-    solid: !isHomeRoute || isScrolled
+    transparent: isHomeRoute && !isScrolled && !isCollapsed,
+    solid: !isHomeRoute || isScrolled || isCollapsed
   }"
 >
   <div class="container">
@@ -18,22 +18,41 @@
       aria-controls="navbarText"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      (click)="toggleMenu()"
     >
       <i class="fa-solid fa-bars menu-icon"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/menu']">Menus</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/menu']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Menus</a
+          >
         </li>
 
         @if(userService.isAdmin()){
 
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/menu/edit']">Editar Menú</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/menu/edit']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Editar Menú</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/tables']">Mesas</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/tables']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Mesas</a
+          >
         </li>
 
         }
@@ -43,29 +62,62 @@
         @if(userService.isLogged()){
 
         <li class="nav-item">
-          <p class="nav-link" id="nav-name">
-            Bienvenido {{ userService.getUserName() }}!
+          <p class="nav-link d-flex align-items-center" id="nav-name">
+            <i class="fa-solid fa-user"></i> {{ userService.getUserName() }}
           </p>
         </li>
 
+        @if(!userService.isAdmin()){
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/reviews']">Añadir reseña</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/reviews']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Añadir reseña</a
+          >
+        </li>
+        }
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/reservations']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Reservas</a
+          >
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/reservations']">Reservas</a>
-        </li>
-
-        <li class="nav-item">
-          <button (click)="onCLickLogout()" class="nav-link">Logout</button>
+          <button
+            (click)="onCLickLogout()"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+          >
+            Logout
+          </button>
         </li>
 
         }@else {
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/register']">Registro</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/register']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Registro</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/login']"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            >Login</a
+          >
         </li>
         }
       </ul>

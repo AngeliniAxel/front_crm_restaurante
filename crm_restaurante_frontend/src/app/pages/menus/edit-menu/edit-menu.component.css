@@ -6,6 +6,7 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
 }
 
 h2 {
@@ -82,4 +83,11 @@ button[type="submit"]:hover {
   color: #dc3545;
   font-size: 14px;
   margin-top: -10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem #a6835871;
+  outline: none;
 }

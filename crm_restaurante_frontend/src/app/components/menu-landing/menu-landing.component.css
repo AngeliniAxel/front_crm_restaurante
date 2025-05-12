@@ -8,13 +8,14 @@
 
 figure {
   margin: 0;
-  flex: 1;
   display: flex;
   justify-content: center;
 }
 
 figure img {
-  max-width: 100%;
+  max-width: 500px;
+  min-width: 300px;
+  width: 100%;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

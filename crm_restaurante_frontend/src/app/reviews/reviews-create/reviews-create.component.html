@@ -1,46 +1,74 @@
-<div class="container text-center ">
-    <h2 class="my-5">Crear Reseña</h2>
-    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+<div class="container text-center">
+  <h2 class="my-5 p-1">Crear Reseña</h2>
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <div class="text-center">
+      <div class="form-floating mb-3">
+        <input
+          type="text "
+          class="form-control review-container"
+          id="inputMessage"
+          formControlName="message"
+          autocomplete="off"
+          placeholder="Introduce tu reseña"
+        />
+        <label class="input-message" for="inputMessage">Reseña</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select
+          name=""
+          id="inputGender"
+          class="form-control select-container"
+          formControlName="gender"
+        >
+          <option value="">Selecciona un género</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="No especificar">No especificar</option>
+        </select>
+        <label id="input-gender" for="inputGender">Género</label>
+      </div>
+    </div>
 
-        <div class="text-center">
-            <div class="form-floating mb-3">
-                <input type="text " class="form-control review-container" id="inputMessage" formControlName="message"
-                    autocomplete="off" placeholder="Introduce tu reseña" />
-                <label class="input-message" for="inputMessage">Reseña</label>
-            </div>
-            <div class="form-floating mb-3">
-                <select name="" id="inputGender" class="form-control select-container" formControlName="gender">
-                    <option value="">Selecciona un género</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="No especificar">No especificar</option>
-                </select>
-                <label id="input-gender" for="inputGender">Género</label>
-            </div>
-        </div>
+    <div class="mb-3">
+      <label class="form-label d-block form-radio">Valoración</label>
+      @for (rating of [1, 2, 3, 4, 5]; track rating) {
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input hidden-radio"
+          type="radio"
+          id="rating{{ rating }}"
+          formControlName="rating"
+          [value]="rating"
+        />
 
-        <div class="mb-3">
-            <label class="form-label d-block form-radio">Valoración</label>
-            @for (rating of [1, 2, 3, 4, 5]; track rating) {
-            <div class="form-check form-check-inline">
-                <input class="form-check-input hidden-radio" type="radio" id="rating{{ rating }}"
-                    formControlName="rating" [value]="rating" />
+        <label
+          class="btn rounded-circle mx-1"
+          [class.btn-warning]="rating <= selectedRating()"
+          [attr.for]="'rating' + rating"
+          style="
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          "
+          title="Valorar {{ rating }} estrella(s)"
+        >
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-star': rating <= selectedRating(),
+              'fa-star-o': rating > selectedRating()
+            }"
+          ></i>
+        </label>
+        <!-- <label class="form-check-label" for="rating{{ rating }}">{{ rating }}</label> -->
+      </div>
+      }
+    </div>
 
-                <label class="btn  rounded-circle mx-1" [class.btn-warning]="rating <= selectedRating()"
-                    [attr.for]="'rating' + rating"
-                    style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;"
-                    title="Valorar {{ rating }} estrella(s)">
-                    <i class="fa"
-                        [ngClass]="{ 'fa-star': rating <= selectedRating(), 'fa-star-o': rating > selectedRating() }"></i>
-                </label>
-                <!-- <label class="form-check-label" for="rating{{ rating }}">{{ rating }}</label> -->
-            </div>
-            }
-        </div>
-
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
 </div>
-
 
 <app-reviews-display></app-reviews-display>
