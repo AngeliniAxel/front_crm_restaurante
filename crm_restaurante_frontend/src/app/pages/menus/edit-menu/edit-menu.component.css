@@ -19,7 +19,9 @@ form {
   flex-direction: column;
   gap: 15px;
 }
-
+option {
+  background-color: var(--bg-color);
+}
 .form-floating {
   position: relative;
 
@@ -49,8 +51,8 @@ select {
 textarea {
   resize: none;
   overflow: hidden;
-  min-height: 50px;
-  max-height: 300px;
+  min-height: 100px;
+  max-height: 200px;
   transition: height 0.2s ease;
 }
 
@@ -58,28 +60,23 @@ label {
   position: absolute;
   top: -10px;
   left: 10px;
-  background-color: #f8f9fa;
+  background-color: whitesmoke;
   padding: 0 5px;
   font-size: 14px;
   color: #6c757d;
 }
 
-/* Botón */
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
 }
 
+.text-area {
+  height: 100px;
+}
+.btn {
+  border-color: var(--primary-color);
+}
 /* Estilo para mensajes de error */
 .error-message {
   color: #dc3545;

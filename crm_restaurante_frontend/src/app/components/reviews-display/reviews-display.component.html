@@ -1,10 +1,42 @@
-<h2 class="text-center">Valoraciones</h2>
-<section class="reviews container">
-    @for(review of arrReviews; track $index){
-    <div class="text-center ">
-        <h3>{{review.rating}}</h3>
-        <p>{{ review.message}}</p>
-    </div>
+<div class="container">
+    <h2 class="text-center">Reseñas</h2>
+    <div class="reviews-container position-relative">
 
-    }
-</section>
+        <button class="nav-button left" (click)="scrollLeft()" aria-label="Scroll left">
+            <i class="fa fa-chevron-left"></i>
+        </button>
+        <section class="reviews" #reviewsSection>
+            @for (review of arrReviews; track review.id) {
+            <div class="text-center mb-4 review-item">
+                <h3>
+                    <!-- Mostrar estrellas según el rating -->
+                    @for (star of [1, 2, 3, 4, 5]; track star) {
+                    <i class="fa" [ngClass]="{
+              'fa-star': star <= review.rating,
+              'fa-star-o': star > review.rating
+            }"></i>
+                    }
+                </h3>
+
+                <!-- Mostrar avatares de género -->
+                <div class="gender-icon">
+
+                    @if (review.gender === 'Masculino') {
+                    <img src="assets/images/reviews/review_man.webp" alt="Masculino" title="Masculino" />
+                    } @else if (review.gender === 'Femenino') {
+                    <img src="assets/images/reviews/review_woman.webp" alt="Femenino" title="Femenino" />
+                    } @else {
+                    <img src="assets/images/reviews/review_nonspecific.webp" alt="No especificar"
+                        title="No especificar" />
+                    }
+                </div>
+                <!-- Mostrar mensaje -->
+                <p>{{ review.message }}</p>
+            </div>
+            }
+        </section>
+        <button class="nav-button right" (click)="scrollRight()" aria-label="Scroll right">
+            <i class="fa fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

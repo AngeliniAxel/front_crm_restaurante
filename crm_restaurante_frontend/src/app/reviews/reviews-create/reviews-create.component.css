@@ -1,0 +1,79 @@
+#input-gender {
+  top: -5px;
+}
+
+.btn {
+  border-color: var(--primary-color);
+}
+.container {
+  margin-top: 2em;
+}
+.form-floating {
+  position: relative;
+  margin: 0 auto;
+  label {
+    position: absolute;
+    background-color: #f8f9fa;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #6c757d;
+    left: 15px;
+    top: -10px;
+    align-content: center;
+    height: 25px;
+    border-radius: 5px;
+  }
+  input {
+    padding-top: 5px;
+  }
+}
+
+.review-container {
+  height: 100px;
+}
+
+label i {
+  color: #ffc107;
+}
+option {
+  background-color: var(--bg-color);
+}
+
+.hidden-radio {
+  display: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 3em;
+  }
+
+  .form-floating label {
+    font-size: 12px;
+    left: 10px;
+    top: -8px;
+    padding: 0 10px;
+  }
+
+  .form-floating input {
+    padding-top: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 2em;
+  }
+
+  .form-floating label {
+    font-size: 10px;
+    left: 8px;
+    top: -6px;
+    padding: 0 8px;
+  }
+
+  .form-floating input {
+    padding-top: 2px;
+  }
+}
