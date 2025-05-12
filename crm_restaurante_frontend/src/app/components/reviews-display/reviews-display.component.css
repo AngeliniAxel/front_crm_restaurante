@@ -23,9 +23,9 @@ section.reviews::-webkit-scrollbar {
 }
 
 .review-item {
-  flex: 0 0 calc((100% - 80px) / 5); /* 5 elementos + 4 gaps (20px * 4) */
-  max-width: calc((100% - 80px) / 5);
-  min-width: calc((100% - 80px) / 5);
+  flex: 0 0 calc((100% - 80px) / 4); /* 5 elementos + 4 gaps (20px * 4) */
+  max-width: calc((100% - 80px) / 4);
+  min-width: calc((100% - 80px) / 4);
   background-color: none;
   border: none;
   border-radius: 8px;
@@ -95,7 +95,7 @@ section.reviews::-webkit-scrollbar {
 }
 
 /* Estilos responsivos */
-@media (max-width: 768px) {
+@media (max-width: 993px) {
   .review-item {
     flex: 0 0 calc((100% - 80px) / 3);
     max-width: calc((100% - 80px) / 3);
@@ -107,11 +107,23 @@ section.reviews::-webkit-scrollbar {
   }
 }
 
+@media (max-width: 768px) {
+  .review-item {
+    flex: 0 0 calc((100% - 80px) / 2);
+    max-width: calc((100% - 80px) / 2);
+    min-width: calc((100% - 80px) / 2);
+  }
+  .gender-icon img {
+    width: 4em;
+    height: 4em;
+  }
+}
+
 @media (max-width: 576px) {
   .review-item {
-    flex: 0 0 calc((100% - 60px) / 3);
-    max-width: calc((100% - 60px) / 3);
-    min-width: calc((100% - 60px) / 3);
+    flex: 0 0 calc((100% - 60px) / 1);
+    max-width: calc((100% - 60px) / 1);
+    min-width: calc((100% - 60px) / 1);
   }
   .gender-icon img {
     width: 3.5em;
