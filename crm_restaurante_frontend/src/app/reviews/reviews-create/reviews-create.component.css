@@ -2,6 +2,11 @@
   top: -5px;
 }
 
+h2 {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
 .btn {
   border-color: var(--primary-color);
 }
