@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,11 @@ import {
 export class LoginComponent {
   userService = inject(UserService);
   router = inject(Router);
+  notyf: Notyf;
+
+  constructor() {
+    this.notyf = new Notyf();
+  }
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [
@@ -43,7 +49,7 @@ export class LoginComponent {
       localStorage.setItem('restaurant_token', response.token);
       this.router.navigateByUrl('/');
     } catch (error: any) {
-      alert(error.error.message);
+      this.notyf.error(error.error.message);
     }
   }
 }

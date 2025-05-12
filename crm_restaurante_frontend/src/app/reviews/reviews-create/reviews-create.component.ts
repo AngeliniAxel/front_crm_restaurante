@@ -10,6 +10,7 @@ import {
 import { ReviewService } from '../../services/review.service';
 import { ReviewsDisplayComponent } from '../../components/reviews-display/reviews-display.component';
 import { CommonModule } from '@angular/common';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-reviews-create',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
 export class ReviewsCreateComponent {
   reviewService = inject(ReviewService);
   router = inject(Router);
+  notyf: Notyf;
 
   reviewForm: FormGroup = new FormGroup({
     message: new FormControl('', Validators.required),
@@ -31,20 +33,27 @@ export class ReviewsCreateComponent {
     gender: new FormControl('', Validators.required),
   });
 
+  constructor() {
+    this.notyf = new Notyf();
+  }
+
   async onSubmit() {
     if (this.reviewForm.invalid) {
-      alert('Por favor, completa todos los campos correctamente.');
+      this.notyf.error('Por favor, completa todos los campos correctamente.');
       return;
     }
     console.log(`datos enviados:`, this.reviewForm.value);
     try {
       const newReview = await this.reviewService.post(this.reviewForm.value);
-      alert('Gracias por tu opinión!');
+      this.notyf.success({
+        message: 'Gracias por tu opinión!',
+        background: '#a68358',
+      });
       console.log(newReview);
       this.router.navigateByUrl('/reviews/create');
       window.location.reload();
     } catch (error) {
-      alert('Error al enviar la reseña');
+      this.notyf.error('Hubo un error al crear la reseña');
       console.error(error);
     }
   }

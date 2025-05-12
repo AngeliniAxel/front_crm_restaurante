@@ -6,7 +6,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const token = localStorage.getItem('restaurant_token');
   if (!token) {
-    alert('No puedes acceder');
     router.navigateByUrl('/login');
     return false;
   }

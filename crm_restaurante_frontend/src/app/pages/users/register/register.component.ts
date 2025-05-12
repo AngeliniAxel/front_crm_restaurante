@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   userService = inject(UserService);
   router = inject(Router);
+  notyf: Notyf;
+
+  constructor() {
+    this.notyf = new Notyf();
+  }
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [
@@ -46,10 +52,13 @@ export class RegisterComponent {
   async onSubmit() {
     try {
       const newUser = await this.userService.register(this.registerForm.value);
-      alert('registro correcto');
+      this.notyf.success({
+        message: 'registro correcto',
+        background: '#a68358',
+      });
       this.router.navigateByUrl('/login');
     } catch (error: any) {
-      alert(error.error.message);
+      this.notyf.error(error.error.message);
     }
   }
 }

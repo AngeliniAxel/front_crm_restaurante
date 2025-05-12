@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { TablesService } from './../../../services/tables.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-new-table',
@@ -12,6 +13,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class NewTableComponent {
   tableService = inject(TablesService);
   router = inject(Router);
+  notyf: Notyf;
+
+  constructor() {
+    this.notyf = new Notyf();
+  }
 
   tableForm: FormGroup = new FormGroup({
     num_table: new FormControl(),
@@ -23,10 +29,13 @@ export class NewTableComponent {
       const response = await this.tableService.createTable(
         this.tableForm.value
       );
-      alert('Mesa creada');
+      this.notyf.success({
+        message: 'Mesa creada!',
+        background: '#a68358',
+      });
       this.router.navigateByUrl('/tables');
     } catch (error: any) {
-      alert(error.error.message);
+      this.notyf.error('Hubo un error al crear la mesa');
     }
   }
 }

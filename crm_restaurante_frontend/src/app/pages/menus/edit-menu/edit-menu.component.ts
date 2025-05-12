@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MenuInterface } from '../../../interfaces/menu.interface';
 import { MenuService } from '../../../services/menu.service';
 import { ActivatedRoute } from '@angular/router';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-edit-menu',
@@ -14,6 +15,7 @@ export class EditMenuComponent {
   arrMenus: MenuInterface[] = [];
   menuService = inject(MenuService);
   route = inject(ActivatedRoute);
+  notyf: Notyf;
 
   selectedId: number = 0;
 
@@ -26,6 +28,10 @@ export class EditMenuComponent {
     price: new FormControl(),
     day_of_week: new FormControl(),
   });
+
+  constructor() {
+    this.notyf = new Notyf();
+  }
 
   ngOnInit() {
     this.loadMenus();
@@ -85,16 +91,19 @@ export class EditMenuComponent {
 
       if (!menuId) {
         console.error('El ID del menú es nulo o indefinido.');
-        alert('Seleccione un día para actualizar');
+        this.notyf.error('Seleccione un día para actualizar');
         return;
       }
 
       const updatedMenu = await this.menuService.updateMenu(menuId, menuData); // Llama al servicio
-      alert('Menú actualizado con éxito');
+      this.notyf.success({
+        message: 'Menú actualizado con éxito',
+        background: '#a68358',
+      });
       console.log('Menú actualizado con éxito:', updatedMenu);
     } catch (error) {
       console.error('Error al actualizar el menú:', error);
-      alert('Error al actualizar el menú');
+      this.notyf.error('Error al actualizar el menú');
     }
   }
 

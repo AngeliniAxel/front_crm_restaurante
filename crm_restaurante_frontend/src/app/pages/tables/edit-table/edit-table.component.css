@@ -1,0 +1,12 @@
+.container {
+  max-width: 500px;
+  margin-top: 100px;
+  min-height: 54vh;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem #a6835871;
+  outline: none;
+}

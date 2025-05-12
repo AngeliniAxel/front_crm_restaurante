@@ -13,7 +13,6 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const token = localStorage.getItem('restaurant_token');
 
   if (!token) {
-    alert('No puedes acceder');
     router.navigateByUrl('/login');
     return false;
   }
@@ -21,7 +20,6 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const decoded = jwtDecode(token) as decodedToken;
 
   if (decoded.role !== 'admin') {
-    alert('No puedes acceder, no eres admin');
     router.navigateByUrl('/menu');
     return false;
   }
