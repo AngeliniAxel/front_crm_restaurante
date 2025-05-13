@@ -1,11 +1,11 @@
 import { MenuService } from './../../../services/menu.service';
 import { Component, inject } from '@angular/core';
 import { MenuInterface } from '../../../interfaces/menu.interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-lista-menu',
-  imports: [CommonModule],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './lista-menu.component.html',
   styleUrl: './lista-menu.component.css',
 })

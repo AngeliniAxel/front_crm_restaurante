@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MenuInterface } from '../../../interfaces/menu.interface';
 import { MenuService } from '../../../services/menu.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Notyf } from 'notyf';
 
 @Component({
@@ -16,6 +16,7 @@ export class EditMenuComponent {
   menuService = inject(MenuService);
   route = inject(ActivatedRoute);
   notyf: Notyf;
+  router = inject(Router);
 
   selectedId: number = 0;
 
@@ -100,6 +101,7 @@ export class EditMenuComponent {
         message: 'Menú actualizado con éxito',
         background: '#a68358',
       });
+      this.router.navigateByUrl('/menu');
       console.log('Menú actualizado con éxito:', updatedMenu);
     } catch (error) {
       console.error('Error al actualizar el menú:', error);

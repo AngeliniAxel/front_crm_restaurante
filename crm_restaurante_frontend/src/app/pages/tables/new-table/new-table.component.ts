@@ -1,7 +1,12 @@
 import { Router } from '@angular/router';
 import { TablesService } from './../../../services/tables.service';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Notyf } from 'notyf';
 
 @Component({
@@ -20,9 +25,16 @@ export class NewTableComponent {
   }
 
   tableForm: FormGroup = new FormGroup({
-    num_table: new FormControl(),
-    capacity: new FormControl(),
+    num_table: new FormControl(null, [Validators.required]),
+    capacity: new FormControl(null, [Validators.required]),
   });
+
+  checkError(field: string, validator: string): boolean | undefined {
+    return (
+      this.tableForm.get(field)?.hasError(validator) &&
+      this.tableForm.get(field)?.touched
+    );
+  }
 
   async onSubmit() {
     try {

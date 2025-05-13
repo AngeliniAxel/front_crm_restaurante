@@ -11,6 +11,9 @@
         placeholder="num_table"
       />
       <label for="inputNum_table">Número de mesa</label>
+      @if(checkError('num_table', 'required')) {
+      <small>Este campo es obligatorio</small>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -22,6 +25,9 @@
         placeholder="capacity"
       />
       <label for="inputCapacity">Capacidad</label>
+      @if(checkError('capacity', 'required')) {
+      <small>Este campo es obligatorio</small>
+      }
     </div>
 
     <button type="submit" class="btn">Crear</button>

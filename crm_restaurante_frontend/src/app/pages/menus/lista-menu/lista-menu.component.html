@@ -1,20 +1,23 @@
 <div class="menu-container container">
-    <div class="menu-list">
-        @for(menu of arrMenus; track $index){
-        <div class="menu-item">
-            <h3 class="menu-title text-center">{{ menu.name }}</h3>
-            <div class="menu-details text-center">
-                <h4><i class="fa-solid fa-plate-wheat"></i>Primeros</h4>
-                <p>{{ menu.firsts }}</p>
-                <h4><i class="fa-solid fa-drumstick-bite"></i>Segundos</h4>
-                <p>{{ menu.seconds }}</p>
-                <h4><i class="fa-solid fa-ice-cream"></i>Postres</h4>
-                <p> {{ menu.desserts }}</p>
-                <p class="fst-italic"><i class="fa-solid fa-mug-hot"></i> Incluye Café, Refresco o Vino <i
-                        class="fa-solid fa-wine-glass-empty"></i></p>
-                <h4>Precio</h4>
-                <p>{{ menu.price | currency }}</p>
-            </div>
-        </div>}
+  <div class="menu-list">
+    @for(menu of arrMenus; track $index){
+    <div class="menu-item">
+      <h3 class="menu-title text-center">{{ menu.name }}</h3>
+      <div class="menu-details text-center">
+        <h4><i class="fa-solid fa-plate-wheat"></i>Primeros</h4>
+        <p>{{ menu.firsts }}</p>
+        <h4><i class="fa-solid fa-drumstick-bite"></i>Segundos</h4>
+        <p>{{ menu.seconds }}</p>
+        <h4><i class="fa-solid fa-ice-cream"></i>Postres</h4>
+        <p>{{ menu.desserts }}</p>
+        <p class="fst-italic">
+          <i class="fa-solid fa-mug-hot"></i> Incluye Café, Refresco o Vino
+          <i class="fa-solid fa-wine-glass-empty"></i>
+        </p>
+        <h4>Precio</h4>
+        <p>{{ menu.price | currency : "EUR" }}</p>
+      </div>
     </div>
+    }
+  </div>
 </div>
