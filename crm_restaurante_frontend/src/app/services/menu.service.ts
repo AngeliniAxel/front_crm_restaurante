@@ -7,7 +7,8 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class MenuService {
-  private baseUrl: string = 'http://localhost:3000/api/menus';
+  private baseUrl: string =
+    'https://backcrmrestaurante-production.up.railway.app/api/menus';
   private httpClient = inject(HttpClient);
 
   getAll() {

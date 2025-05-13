@@ -7,7 +7,8 @@ import { Table } from '../interfaces/table.interface';
   providedIn: 'root',
 })
 export class TablesService {
-  private baseUrl: string = 'http://localhost:3000/api/tables';
+  private baseUrl: string =
+    'https://backcrmrestaurante-production.up.railway.app/api/tables';
   private httpClient = inject(HttpClient);
 
   getAll() {

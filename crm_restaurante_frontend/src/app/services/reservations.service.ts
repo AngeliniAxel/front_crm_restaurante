@@ -7,7 +7,8 @@ import { Reservation } from '../interfaces/reservation.interface';
   providedIn: 'root',
 })
 export class ReservationsService {
-  private baseUrl: string = 'http://localhost:3000/api/reservations';
+  private baseUrl: string =
+    'https://backcrmrestaurante-production.up.railway.app/api/reservations';
   private httpClient = inject(HttpClient);
 
   createTable(body: Reservation) {

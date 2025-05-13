@@ -24,7 +24,8 @@ type decodedToken = {
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl: string = 'http://localhost:3000/api/users';
+  private baseUrl: string =
+    'https://backcrmrestaurante-production.up.railway.app/api/users';
   private httpClient = inject(HttpClient);
 
   register(body: User) {

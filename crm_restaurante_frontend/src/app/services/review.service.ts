@@ -7,7 +7,8 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class ReviewService {
-  private baseUrl: string = 'http://localhost:3000/api/reviews';
+  private baseUrl: string =
+    'https://backcrmrestaurante-production.up.railway.app/api/reviews';
   private httpClient = inject(HttpClient);
 
   getAll() {
