@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Table } from '../interfaces/table.interface';
+import { AvailableTables } from '../interfaces/available-tables.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,9 @@ export class TablesService {
     return lastValueFrom(this.httpClient.get<Table>(url));
   }
 
-  getByAvailableTables(capacity: number, date: string, time: string) {
-    const url = `${this.baseUrl}/availables/${capacity}/${date}/${time}`;
-    return lastValueFrom(this.httpClient.get<Table[]>(url));
+  getByAvailableTables(capacity: number, date: string) {
+    const url = `${this.baseUrl}/availables/${capacity}/${date}`;
+    return lastValueFrom(this.httpClient.get<AvailableTables>(url));
   }
   getByCapacity(capacity: number) {
     const url = `${this.baseUrl}/capacity/${capacity}`;

@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 import { ReservationsService } from '../../services/reservations.service';
 import { jwtDecode } from 'jwt-decode';
 import { Reservation } from '../../interfaces/reservation.interface';
+import { AvailableTables } from '../../interfaces/available-tables.interface';
 
 type decodedToken = {
   id: number;
@@ -38,12 +39,7 @@ export class ReservationsComponent {
   tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 
   // Obj que tendrá los array de las mesas disponibles
-  availableTables: {
-    at12: Table[];
-    at14: Table[];
-    at20: Table[];
-    at22: Table[];
-  } = {
+  availableTables: AvailableTables = {
     at12: [],
     at14: [],
     at20: [],
@@ -88,32 +84,10 @@ export class ReservationsComponent {
     const capacity = this.dateForm.get('num_guests')?.value;
 
     // Obtengo las mesas disponibles en cada horario basandome en la cantidad de personas y la fecha seleccionada
-    // 12
-    this.availableTables.at12 = await this.tablesService.getByAvailableTables(
-      capacity,
-      this.formattedDate,
-      '12:00'
-    );
 
-    // 14
-    this.availableTables.at14 = await this.tablesService.getByAvailableTables(
+    this.availableTables = await this.tablesService.getByAvailableTables(
       capacity,
-      this.formattedDate,
-      '14:00'
-    );
-
-    // 20
-    this.availableTables.at20 = await this.tablesService.getByAvailableTables(
-      capacity,
-      this.formattedDate,
-      '20:00'
-    );
-
-    // 22
-    this.availableTables.at22 = await this.tablesService.getByAvailableTables(
-      capacity,
-      this.formattedDate,
-      '22:00'
+      this.formattedDate
     );
 
     this.active++;
